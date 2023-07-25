@@ -263,9 +263,11 @@ set_target_properties(${PROJECT_NAME}
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
-        libsodium/src/libsodium/include
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/libsodium/src/libsodium/include>
+    $<INSTALL_INTERFACE:include/libsodium>  # <prefix>/include/mylib
     PRIVATE
-        libsodium/src/libsodium/include/sodium
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/libsodium/src/libsodium/include/sodium>
+    $<INSTALL_INTERFACE:include/libsodium>  # <prefix>/include/mylib
 )
 
 target_compile_definitions(${PROJECT_NAME}
